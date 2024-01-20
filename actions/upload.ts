@@ -17,7 +17,7 @@ const s3Client = new S3Client({
   },
 })
 
-async function uploadFileToS3(file, fileName) {
+async function uploadFileToS3(file: Buffer, fileName: string) {
   const fileBuffer = file
   //   const fileBuffer = await sharp(file)
   //     .jpeg({ quality: 50 })
@@ -42,27 +42,28 @@ async function uploadFileToS3(file, fileName) {
   }
 }
 
-interface InitialState {
-  message?: string
-}
-interface UploadProps {
-  prevState: InitialState
-  //   formData: FormData
+export interface FormState {
+  message: string
+  status: string
+  // file?: File
 }
 
-export async function uploadFile(prevState, formData) {
+export async function uploadFile(
+  prevState: FormState,
+  formData: FormData
+): Promise<FormState> {
   try {
-    const file = formData.get('file')
+    const file = formData.get('file') as File
 
-    if (file.size === 0) {
+    if (!file || file?.size === 0) {
       return { status: 'error', message: 'Please select a file.' }
     }
+    console.log(file)
 
-    const buffer = Buffer.from(await file.arrayBuffer())
-    const up = await uploadFileToS3(buffer, file.name)
+    // const buffer = Buffer.from(await file.arrayBuffer())
+    // await uploadFileToS3(buffer, file.name)
 
-    console.log(up)
-    revalidatePath('/')
+    // revalidatePath('/')
     return { status: 'success', message: 'File has been upload.' }
   } catch (error) {
     return { status: 'error', message: 'Failed to upload file.' }
