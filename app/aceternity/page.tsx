@@ -1,3 +1,4 @@
+import { AnimatedPinDemo } from './components/3d-pin/Demo'
 import { GoogleGeminiEffectDemo } from './components/GoogleGeminiEffect/Demo'
 import { TabsDemo } from './components/Tabs/Demo'
 import { EvervaultCardDemo } from './components/evervault-card/Demo'
@@ -13,6 +14,7 @@ function page() {
       <TabsDemo />
       <HeroParallaxDemo />
       <SVGMaskEffectDemo />
+      <AnimatedPinDemo />
       <TextRevealCardPreview />
     </div>
   )
