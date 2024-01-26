@@ -15,18 +15,19 @@ export function UploadForm() {
     uploadFile,
     initialState
   )
-  const [files, setFiles] = useState()
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const fi = e.target.files
-    // if (e.target.files) {
-    //   setFiles((prev) => prev, e.target.files)
-    //   console.log(files?.length)
-    // }
-    setFiles([...files, ...e.target.files])
-    console.log(fi)
-    console.log(files)
-  }
+  // const [files, setFiles] = useState()
+
+  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const fi = e.target.files
+  //   // if (e.target.files) {
+  //   //   setFiles((prev) => prev, e.target.files)
+  //   //   console.log(files?.length)
+  //   // }
+  //   setFiles([...files, ...e.target.files])
+  //   console.log(fi)
+  //   console.log(files)
+  // }
 
   return (
     <div className="form-wrapper">
@@ -37,7 +38,7 @@ export function UploadForm() {
           id="file"
           name="file"
           accept="images/*"
-          onChange={handleFileChange}
+          // onChange={handleFileChange}
         />
         <SubmitButton />
       </form>

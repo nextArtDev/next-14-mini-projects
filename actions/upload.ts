@@ -53,18 +53,23 @@ export async function uploadFile(
   formData: FormData
 ): Promise<FormState> {
   try {
-    const file = formData.get('file') as File
+    // console.log(formData.getAll('file'))
 
-    if (!file || file?.size === 0) {
+    const files = formData.getAll('file') as File[]
+    if (!files || files.length === 0) {
       return { status: 'error', message: 'Please select a file.' }
     }
-    console.log(file)
+    for (const f in files) {
+      const file = formData.get('file') as File
+      console.log(file)
 
-    // const buffer = Buffer.from(await file.arrayBuffer())
-    // await uploadFileToS3(buffer, file.name)
+      // const buffer = Buffer.from(await file.arrayBuffer())
+      // await uploadFileToS3(buffer, file.name)
 
-    // revalidatePath('/')
-    return { status: 'success', message: 'File has been upload.' }
+      // return { status: 'success', message: 'File has been upload.' }
+    }
+    revalidatePath('/')
+    return { status: 'success', message: 'Files has been upload.' }
   } catch (error) {
     return { status: 'error', message: 'Failed to upload file.' }
   }
