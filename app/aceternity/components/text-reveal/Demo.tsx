@@ -16,12 +16,9 @@ export function TextRevealCardPreview() {
         text="کتابی برای تمام فصول"
         revealText="کتابی برای خواندن"
       >
-        <TextRevealCardTitle>
-          Sometimes, you just need to see it.
-        </TextRevealCardTitle>
+        <TextRevealCardTitle>کتاب زمان</TextRevealCardTitle>
         <TextRevealCardDescription>
-          This is a text reveal card. Hover over the card to reveal the hidden
-          text.
+          نویسنده و مترجم: کتاب روز
         </TextRevealCardDescription>
       </TextRevealCard>
     </div>
