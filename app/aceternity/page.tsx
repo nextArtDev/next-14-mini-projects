@@ -1,6 +1,7 @@
 import { AnimatedPinDemo } from './components/3d-pin/Demo'
 import { GoogleGeminiEffectDemo } from './components/GoogleGeminiEffect/Demo'
 import { TabsDemo } from './components/Tabs/Demo'
+import { BentoGridDemo } from './components/bento-grid/Demo'
 import { EvervaultCardDemo } from './components/evervault-card/Demo'
 import { HeroParallaxDemo } from './components/hero-parallax/Demo'
 import { LayoutGridDemo } from './components/layout-grid/Demo'
@@ -11,6 +12,7 @@ function page() {
   return (
     <div>
       <LayoutGridDemo />
+      <BentoGridDemo />
       <GoogleGeminiEffectDemo />
       <EvervaultCardDemo />
       <TabsDemo />
