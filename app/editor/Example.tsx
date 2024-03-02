@@ -362,7 +362,11 @@ export function PlateEditor() {
   return (
     <DndProvider backend={HTML5Backend}>
       <CommentsProvider users={{}} myUserId="1">
-        <Plate plugins={plugins} initialValue={initialValue}>
+        <Plate
+          onChange={(value) => console.log(value)}
+          plugins={plugins}
+          initialValue={initialValue}
+        >
           <FixedToolbar>
             <FixedToolbarButtons />
           </FixedToolbar>

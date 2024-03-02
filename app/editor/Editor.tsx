@@ -18,7 +18,11 @@ const initialValue = [
 
 export function PlateEditor() {
   return (
-    <Plate plugins={plugins} initialValue={initialValue}>
+    <Plate
+      plugins={plugins}
+      onChange={(value) => console.log(value)}
+      initialValue={initialValue}
+    >
       <Editor placeholder="Type your message here." />
     </Plate>
   )
