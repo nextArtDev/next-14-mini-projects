@@ -153,6 +153,7 @@ import { EmojiCombobox } from '@/components/plate-ui/emoji-combobox'
 const plugins = createPlugins(
   [
     createParagraphPlugin(),
+
     createBlockquotePlugin(),
     createCodeBlockPlugin(),
     createHorizontalRulePlugin(),
@@ -365,13 +366,14 @@ export function PlateEditor() {
         <Plate
           onChange={(value) => console.log(value)}
           plugins={plugins}
+          editor={editor}
           initialValue={initialValue}
         >
           <FixedToolbar>
             <FixedToolbarButtons />
           </FixedToolbar>
 
-          <Editor />
+          <Editor onChange={(v) => console.log(v)} className="pt-10" />
 
           <FloatingToolbar>
             <FloatingToolbarButtons />

@@ -60,6 +60,7 @@
     "@udecode/plate-selection": "^30.5.3",
     "@udecode/plate-serializer-csv": "^30.5.3",
     "@udecode/plate-serializer-docx": "^30.5.3",
+    "@udecode/plate-serializer-html": "^30.5.3",
     "@udecode/plate-serializer-md": "^30.7.0",
     "@udecode/plate-tabbable": "^30.5.3",
     "@udecode/plate-table": "^30.5.3",
