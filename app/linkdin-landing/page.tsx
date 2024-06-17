@@ -1,3 +1,4 @@
+import PostFeed from './components/PostFeed'
 import PostForm from './components/PostForm'
 
 function page() {
@@ -11,6 +12,7 @@ function page() {
           {/* Post Form  */}
           <PostForm />
           {/* Post Feed */}
+          <PostFeed />
         </section>
         <div className="hidden xl:inline justify-center col-span-2">
           Widgets

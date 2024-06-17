@@ -19,6 +19,7 @@ function PostForm() {
 
   const handlePostAction = async (formData: FormData): Promise<void> => {
     const formDataCopy = formData
+    //optimistic update
     ref.current?.reset()
 
     const text = formDataCopy.get('postInput') as string
@@ -94,7 +95,11 @@ function PostForm() {
 
         {preview && (
           <div className="mt-2">
-            <img src={preview} alt="Preview" className="w-full object-cover" />
+            <img
+              src={preview}
+              alt="Preview"
+              className="w-full max-h-[70vh] object-cover"
+            />
           </div>
         )}
 

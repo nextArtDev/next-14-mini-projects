@@ -44,6 +44,9 @@ importers:
       '@tabler/icons-react':
         specifier: ^2.47.0
         version: 2.47.0(react@18.2.0)
+      '@types/react-timeago':
+        specifier: ^4.1.7
+        version: 4.1.7
       '@types/zarinpal-checkout':
         specifier: ^0.2.4
         version: 0.2.4
@@ -224,6 +227,9 @@ importers:
       react-lite-youtube-embed:
         specifier: ^2.4.0
         version: 2.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-timeago:
+        specifier: ^7.2.0
+        version: 7.2.0(react@18.2.0)
       react-tweet:
         specifier: ^3.2.0
         version: 3.2.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -1360,6 +1366,9 @@ packages:
 
   '@types/react-dom@18.2.18':
     resolution: {integrity: sha512-TJxDm6OfAX2KJWJdMEVTwWke5Sc/E/RlnPGvGfS0W7+6ocy2xhDVQVh/KvC2Uf7kACs+gDytdusDSdWfWkaNzw==}
+
+  '@types/react-timeago@4.1.7':
+    resolution: {integrity: sha512-ogD4Ror/hDG+pQggCX+TgPgJ8W2jeeUxsgNU485Qpm0Ma+E2TND2EJuKwK5+sxlkDXDEgsHradO0zWBkTgLzNg==}
 
   '@types/react@18.2.45':
     resolution: {integrity: sha512-TtAxCNrlrBp8GoeEp1npd5g+d/OejJHFxS3OWmrPBMFaVQMSN0OFySozJio5BHxTuTeug00AVXVAjfDSfk+lUg==}
@@ -4135,6 +4144,11 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
+  react-timeago@7.2.0:
+    resolution: {integrity: sha512-2KsBEEs+qRhKx/kekUVNSTIpop3Jwd7SRBm0R4Eiq3mPeswRGSsftY9FpKsE/lXLdURyQFiHeHFrIUxLYskG5g==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+
   react-tracked@1.7.12:
     resolution: {integrity: sha512-4HhgUyhUVrq2Bc+Qu4ZloKHgEydR5Ge0YNsTLo/CCLhhk18wsYWOHY5ALrPjaeb5x4mWOQYuUMYe7G2VAfvFkQ==}
     peerDependencies:
@@ -6555,6 +6569,10 @@ snapshots:
   '@types/prop-types@15.7.11': {}
 
   '@types/react-dom@18.2.18':
+    dependencies:
+      '@types/react': 18.2.45
+
+  '@types/react-timeago@4.1.7':
     dependencies:
       '@types/react': 18.2.45
 
@@ -9943,6 +9961,10 @@ snapshots:
       use-latest: 1.2.1(@types/react@18.2.45)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
+
+  react-timeago@7.2.0(react@18.2.0):
+    dependencies:
+      react: 18.2.0
 
   react-tracked@1.7.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(scheduler@0.23.0):
     dependencies:
