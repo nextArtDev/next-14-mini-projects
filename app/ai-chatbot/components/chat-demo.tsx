@@ -16,8 +16,8 @@ export function ChatDemo(props: ChatDemoProps) {
     append,
     stop,
     isLoading,
-  } = useChat(props)
-
+  } = useChat({ ...props, api: 'http://localhost:3000/api/groq' })
+  console.log({ messages })
   return (
     <div className="flex h-[500px] w-full">
       <Chat
