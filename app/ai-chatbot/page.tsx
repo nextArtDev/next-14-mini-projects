@@ -10,8 +10,8 @@ import { getAi } from './components/server'
 type Props = {}
 
 const page = async (props: Props) => {
-  const res = await getAi()
-  console.log(res?.body)
+  // const res = await getAi()
+  // console.log(res?.body)
   return (
     <div className="flex items-center justify-center min-h-screen max-w-sm mx-auto">
       <Card className="p-3">

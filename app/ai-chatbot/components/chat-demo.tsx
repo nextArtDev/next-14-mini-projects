@@ -16,7 +16,7 @@ export function ChatDemo(props: ChatDemoProps) {
     append,
     stop,
     isLoading,
-  } = useChat({ ...props, api: 'http://localhost:3000/api/groq' })
+  } = useChat({ ...props, api: '/api/deepseek' })
   console.log({ messages })
   return (
     <div className="flex h-[500px] w-full">
