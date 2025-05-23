@@ -16,7 +16,7 @@ export function ChatDemo(props: ChatDemoProps) {
     append,
     stop,
     isLoading,
-  } = useChat({ ...props, api: '/api/deepseek' })
+  } = useChat({ ...props, api: '/api/openai' })
   console.log({ messages })
   return (
     <div className="flex h-[500px] w-full">

@@ -60,8 +60,10 @@ import { convertToCoreMessages, streamText, tool } from 'ai'
 export const maxDuration = 30
 
 const groq = createOpenAI({
-  baseURL: 'https://api.groq.com/openai/v1',
-  apiKey: process.env.GROQ_API_KEY,
+  // baseURL: 'https://api.groq.com/openai/v1',
+  // apiKey: process.env.GROQ_API_KEY,
+  baseURL: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_BASE_URL,
 })
 
 export async function POST(req: Request) {
