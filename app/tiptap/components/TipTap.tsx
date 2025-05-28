@@ -15,8 +15,9 @@ import { z } from 'zod'
 
 import type { Content, Editor } from '@tiptap/react'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { MinimalTiptapEditor } from '@/components/minimal-tiptap'
+
 import { cn } from '@/lib/utils'
+import { MinimalTiptapEditor } from '@/components/minimal-tiptap'
 
 type Props = {}
 const formSchema = z.object({
@@ -68,16 +69,23 @@ function TipTap({}: Props) {
               <FormControl>
                 <MinimalTiptapEditor
                   {...field}
-                  value={field.value}
-                  onChange={field.onChange}
                   onValueChange={field.onChange}
-                  className="w-full"
-                  //   editorContentClassName="p-5"
-                  output="html"
-                  placeholder="Enter your description..."
-                  autofocus={true}
-                  editable={true}
-                  editorClassName="focus:outline-hidden"
+                  value={field.value}
+                  content={field.value}
+                  // throttleDelay={0}
+                  className={cn('w-full', {
+                    'border-destructive focus-within:border-destructive':
+                      form.formState.errors.description,
+                  })}
+                  // editorContentClassName="some-class"
+                  // output="html"
+                  // placeholder="Type your description here..."
+                  // onCreate={handleCreate}
+                  // autofocus={true}
+                  // immediatelyRender={true}
+                  // editable={true}
+                  // injectCSS={true}
+                  // editorClassName="focus:outline-none p-5"
                 />
               </FormControl>
               <FormMessage />

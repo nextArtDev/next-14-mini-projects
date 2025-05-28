@@ -1,4 +1,3 @@
-'use client'
 import type { Editor as TiptapEditor } from '@tiptap/core'
 import { useEditor, EditorContent, ReactNodeViewRenderer } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
@@ -18,8 +17,7 @@ import { getOutput } from '../utils'
 import { ImageBubbleMenu } from './bubble-menu/image-bubble-menu'
 import { forwardRef } from 'react'
 
-export interface MinimalTiptapProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface MinimalTiptapProps extends React.HTMLAttributes<HTMLDivElement> {
   value?: string | null
   outputValue?: 'html' | 'json' | 'text'
   disabled?: boolean
@@ -28,28 +26,17 @@ export interface MinimalTiptapProps
 }
 
 const MinimalTiptapEditor = forwardRef<HTMLDivElement, MinimalTiptapProps>(
-  (
-    {
-      value,
-      outputValue = 'html',
-      disabled,
-      contentClass,
-      onValueChange,
-      className,
-      ...props
-    },
-    ref
-  ) => {
+  ({ value, outputValue = 'html', disabled, contentClass, onValueChange, className, ...props }, ref) => {
     const editor = useEditor({
       extensions: [
         StarterKit,
         Image.extend({
           addNodeView() {
             return ReactNodeViewRenderer(ImageViewBlock)
-          },
+          }
         }),
         Link.configure({
-          openOnClick: false,
+          openOnClick: false
         }).extend({
           // https://github.com/ueberdosis/tiptap/issues/2571
           inclusive: false,
@@ -61,10 +48,7 @@ const MinimalTiptapEditor = forwardRef<HTMLDivElement, MinimalTiptapProps>(
                 props: {
                   handleClick(view, pos) {
                     const { schema, doc, tr } = view.state
-                    const range = getMarkRange(
-                      doc.resolve(pos),
-                      schema.marks.link
-                    )
+                    const range = getMarkRange(doc.resolve(pos), schema.marks.link)
 
                     if (!range) {
                       return
@@ -80,61 +64,31 @@ const MinimalTiptapEditor = forwardRef<HTMLDivElement, MinimalTiptapProps>(
 
                     const $start = doc.resolve(start)
                     const $end = doc.resolve(end)
-                    const transaction = tr.setSelection(
-                      new TextSelection($start, $end)
-                    )
+                    const transaction = tr.setSelection(new TextSelection($start, $end))
 
                     view.dispatch(transaction)
-                  },
-                },
-              }),
+                  }
+                }
+              })
             ]
-          },
-        }),
+          }
+        })
       ],
       editorProps: {
         attributes: {
-          class:
-            'prose mx-auto focus:outline-none max-w-none prose-stone dark:prose-invert',
-        },
+          class: 'prose mx-auto focus:outline-none max-w-none prose-stone dark:prose-invert'
+        }
       },
-      onUpdate: (props) => {
+      onUpdate: props => {
         onValueChange(getOutput(props.editor, outputValue))
       },
       content: value,
       editable: !disabled,
       onCreate: ({ editor }) => {
         if (value) {
-          // editor.chain().setContent(value).run()
-          editor
-            .chain()
-            .focus()
-            .extendMarkRange('link')
-            .command(({ tr, dispatch }) => {
-              if (!dispatch) return true
-
-              const { from, to } = tr.selection
-              // i have a modal where you can enter a display text and the url
-              // Assuming 'values' is meant to come from a state or prop, you'll need to adapt this
-              // For example, if 'values' is managed by a useState hook:
-              // const [values, setValues] = useState({ displayText: '', url: '' });
-              // You would then use the 'values' from that hook.
-              // Here's a placeholder assuming it's an empty object for now:
-              const values = { displayText: '', url: '' }
-              const displayText = values.displayText || values.url || ''
-
-              tr.insertText(displayText, from, to)
-              tr.addMark(
-                from,
-                from + displayText.length,
-                editor.schema.marks.link.create({ href: values.url })
-              )
-
-              return true
-            })
-            .run()
+          editor.chain().setContent(value).run()
         }
-      },
+      }
     })
 
     return (
@@ -153,10 +107,7 @@ const MinimalTiptapEditor = forwardRef<HTMLDivElement, MinimalTiptapProps>(
             <Toolbar editor={editor} />
           </>
         )}
-        <div
-          className="h-full grow"
-          onClick={() => editor?.chain().focus().run()}
-        >
+        <div className="h-full grow" onClick={() => editor?.chain().focus().run()}>
           <EditorContent editor={editor} className={cn('p-5', contentClass)} />
         </div>
       </div>

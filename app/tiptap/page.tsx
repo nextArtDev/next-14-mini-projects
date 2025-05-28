@@ -9,6 +9,7 @@ function page({}: Props) {
   return (
     <div>
       {/* <TipTap /> */}
+
       <TipTapMini />
     </div>
   )
