@@ -6,17 +6,22 @@ import {
   Heading1,
   Heading2,
   Heading3,
+  Heading4,
+  Heading5,
   Highlighter,
   Italic,
   List,
   ListOrdered,
+  Redo,
   Strikethrough,
+  Undo,
 } from 'lucide-react'
 
 import { Editor } from '@tiptap/react'
 import { Toggle } from '@/components/ui/toggle'
 
 export default function MenuBar({ editor }: { editor: Editor | null }) {
+  //youtube
   if (!editor) {
     return null
   }
@@ -35,6 +40,16 @@ export default function MenuBar({ editor }: { editor: Editor | null }) {
     {
       icon: <Heading3 className="size-4" />,
       onClick: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
+      preesed: editor.isActive('heading', { level: 3 }),
+    },
+    {
+      icon: <Heading4 className="size-4" />,
+      onClick: () => editor.chain().focus().toggleHeading({ level: 4 }).run(),
+      preesed: editor.isActive('heading', { level: 3 }),
+    },
+    {
+      icon: <Heading5 className="size-4" />,
+      onClick: () => editor.chain().focus().toggleHeading({ level: 5 }).run(),
       preesed: editor.isActive('heading', { level: 3 }),
     },
     {
@@ -82,12 +97,23 @@ export default function MenuBar({ editor }: { editor: Editor | null }) {
       onClick: () => editor.chain().focus().toggleHighlight().run(),
       preesed: editor.isActive('highlight'),
     },
+    {
+      icon: <Undo className="size-4" />,
+      onClick: () => editor.chain().focus().undo().run(),
+      preesed: editor.isActive('undo'),
+    },
+    {
+      icon: <Redo className="size-4" />,
+      onClick: () => editor.chain().focus().redo().run(),
+      preesed: editor.isActive('redo'),
+    },
   ]
 
   return (
     <div className="border rounded-md p-1 mb-1 bg-slate-50 space-x-2 z-50">
       {Options.map((option, index) => (
         <Toggle
+          variant="default"
           key={index}
           pressed={option.preesed}
           onPressedChange={option.onClick}

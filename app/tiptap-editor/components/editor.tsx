@@ -6,7 +6,7 @@ import { useCurrentEditor, EditorProvider } from '@tiptap/react'
 const Tiptap = () => {
   const editor = useEditor({
     extensions: [StarterKit],
-    content: '<p>Hello World! 🌎️</p>',
+    content: '<p>توضیحات...</p>',
   })
 
   return <EditorContent editor={editor} />
