@@ -1,36 +1,57 @@
 // app/api/chat/route.ts (or pages/api/chat.ts)
 import { initialMessage } from '@/app/ai-chatbot/data'
-import { convertToCoreMessages } from 'ai'
+import { createOpenAI } from '@ai-sdk/openai'
+import { convertToCoreMessages, generateText } from 'ai'
 import OpenAI from 'openai'
 
+// const openai = new OpenAI({
+//   baseURL: 'https://ai.liara.ir/api/v1/68304a4f153623bd82f7dbed',
+//   apiKey: process.env.OPENAI_API_KEY,
+// })
 const openai = new OpenAI({
-  baseURL: 'https://ai.liara.ir/api/v1/68304a4f153623bd82f7dbed',
+  baseURL: 'https://ai.liara.ir/api/v1/684808d84b02a3e0edf36a8d',
   apiKey: process.env.OPENAI_API_KEY,
 })
+// const openai = createOpenAI({
+//   // custom settings, e.g.
+//   compatibility: 'strict', // strict mode, enable when using the OpenAI API
+//   baseURL: 'https://ai.liara.ir/api/v1/68304a4f153623bd82f7dbed',
+//   apiKey: process.env.OPENAI_API_KEY,
+// })
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json()
 
+    // const completion = await openai.chat.completions.create({
+    //   model: 'openai/gpt-4o-mini',
+    //   messages: [
+    //     {
+    //       role: 'system',
+    //       content: messages,
+    //     },
+    //     // messages,
+    //     // ...convertToCoreMessages(messages),
+    //   ],
+    //   // messages: [
+    //   //   {
+    //   //     role: 'user',
+    //   //     content: 'معنای زندگی چیست؟',
+    //   //   },
+    //   // ],
     const completion = await openai.chat.completions.create({
       model: 'openai/gpt-4o-mini',
       messages: [
         {
-          role: 'system',
-          content: messages,
+          role: 'user',
+          content: 'whats the meaning of life?',
         },
-        // messages,
-        // ...convertToCoreMessages(messages),
       ],
-      // messages: [
-      //   {
-      //     role: 'user',
-      //     content: 'معنای زندگی چیست؟',
-      //   },
-      // ],
     })
 
     console.log(completion.choices[0].message.content)
     return completion.choices[0].message.content
+    // console.log(completion.choices[0].message.content)
+    // return completion.choices[0].message.content
   } catch (error) {
     console.error('Error in API route:', error)
     if (error instanceof Error) {
