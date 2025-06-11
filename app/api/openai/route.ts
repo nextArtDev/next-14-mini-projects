@@ -1,15 +1,15 @@
 // app/api/chat/route.ts (or pages/api/chat.ts)
 import { initialMessage } from '@/app/ai-chatbot/data'
 import { createOpenAI } from '@ai-sdk/openai'
-import { convertToCoreMessages, generateText } from 'ai'
+import { convertToCoreMessages, generateText, streamText } from 'ai'
 import OpenAI from 'openai'
 
 // const openai = new OpenAI({
 //   baseURL: 'https://ai.liara.ir/api/v1/68304a4f153623bd82f7dbed',
 //   apiKey: process.env.OPENAI_API_KEY,
 // })
-const openai = new OpenAI({
-  baseURL: 'https://ai.liara.ir/api/v1/684808d84b02a3e0edf36a8d',
+const openai = createOpenAI({
+  baseURL: process.env.OPENAI_API_BASE_URL,
   apiKey: process.env.OPENAI_API_KEY,
 })
 // const openai = createOpenAI({
@@ -38,20 +38,44 @@ export async function POST(req: Request) {
     //   //     content: 'معنای زندگی چیست؟',
     //   //   },
     //   // ],
-    const completion = await openai.chat.completions.create({
-      model: 'openai/gpt-4o-mini',
-      messages: [
-        {
-          role: 'user',
-          content: 'whats the meaning of life?',
-        },
-      ],
-    })
+    // const completion = await openai.chat.completions.create({
+    //   model: 'openai/gpt-4o-mini',
+    //   messages: [
+    //     {
+    //       role: 'user',
+    //       content: messages,
+    //     },
+    //   ],
+    // })
 
-    console.log(completion.choices[0].message.content)
-    return completion.choices[0].message.content
     // console.log(completion.choices[0].message.content)
     // return completion.choices[0].message.content
+    // const result = streamText({
+    //   model: openai('gpt-4o-mini'),
+    //   messages,
+    // })
+    // console.log(result.toDataStreamResponse())
+    // return result.toDataStreamResponse()
+    // console.log(completion.choices[0].message.content)
+    // return completion.choices[0].message.content
+    const result = await streamText({
+      model: openai('openai/gpt-4o-mini'),
+      system: 'You are a helpful assistant.',
+      messages: [
+        {
+          role: 'system',
+          content: initialMessage.content,
+        },
+        ...convertToCoreMessages(messages),
+      ],
+      // maxSteps: 3,
+    })
+    for await (const delta of result.textStream) {
+      if (delta) {
+        console.log(delta)
+      }
+    }
+    return result.toDataStreamResponse()
   } catch (error) {
     console.error('Error in API route:', error)
     if (error instanceof Error) {
