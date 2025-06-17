@@ -1,9 +1,9 @@
 // app/api/chat/route.ts (or pages/api/chat.ts)
-import { initialMessage } from '@/app/ai-chatbot/data'
+import { initialMessage, initialMessageShiva } from '@/app/ai-chatbot/data'
 import { createOpenAI } from '@ai-sdk/openai'
 import { convertToCoreMessages, generateText, streamText } from 'ai'
 import OpenAI from 'openai'
-
+import { deepseek } from '@ai-sdk/deepseek'
 // const openai = new OpenAI({
 //   baseURL: 'https://ai.liara.ir/api/v1/68304a4f153623bd82f7dbed',
 //   apiKey: process.env.OPENAI_API_KEY,
@@ -64,7 +64,7 @@ export async function POST(req: Request) {
       messages: [
         {
           role: 'system',
-          content: initialMessage.content,
+          content: initialMessageShiva.content,
         },
         ...convertToCoreMessages(messages),
       ],
