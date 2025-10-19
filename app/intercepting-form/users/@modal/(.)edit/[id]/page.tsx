@@ -13,15 +13,15 @@ export default async function EditUser({ params }: Props) {
 
   const user = await getUser(id)
 
-  if (!user?.id) {
-    return (
-      <Modal>
-        <div className="p-8 max-w-md space-y-2">
-          <h1 className="text-2xl">No User Found for that ID.</h1>
-        </div>
-      </Modal>
-    )
-  }
+  // if (!user?.id) {
+  //   return (
+  //     <Modal>
+  //       <div className="p-8 max-w-md space-y-2">
+  //         <h1 className="text-2xl">No User Found for that ID.</h1>
+  //       </div>
+  //     </Modal>
+  //   )
+  // }
 
   return (
     <Modal>
