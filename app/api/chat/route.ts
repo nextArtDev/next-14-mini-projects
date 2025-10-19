@@ -59,7 +59,7 @@ export async function POST(req: Request) {
 
     // Stream response from Claude 3.5 (latest as of 2025)
     const result = await streamText({
-      model: anthropic('claude-sonnet-4-5-20250929') as unknown as any,
+      model: anthropic('claude-sonnet-4-5'),
       system: 'You are a helpful assistant.',
       messages: [
         {
@@ -102,7 +102,7 @@ export async function POST(req: Request) {
 
 //     // Stream response from GPT-4o-mini
 //     const result = await streamText({
-//       model: openai('gpt-4o-mini'), // ✅ new syntax (no "openai/" prefix)
+//       model: openai('gpt-4o-mini-2024-07-18'), // ✅ new syntax (no "openai/" prefix)
 //       system: 'You are a helpful assistant.',
 //       messages: [
 //         {
